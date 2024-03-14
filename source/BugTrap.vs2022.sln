@@ -9,8 +9,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BugTrap", "Client\BugTrap.v
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "zlib", "zlib\zlib.vs2022.vcxproj", "{B5919129-6716-499D-9516-04EC34C86CDF}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CrashExplorer", "CrashExplorer\CrashExplorer.vs2022.vcxproj", "{E6EDE286-05E0-4396-B551-AB273111E967}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{426D2F68-7D26-4599-8574-92DF50FF0AFF}"
 	ProjectSection(SolutionItems) = preProject
 		.nuget\NuGet.Config = .nuget\NuGet.Config
@@ -62,18 +60,6 @@ Global
 		{B5919129-6716-499D-9516-04EC34C86CDF}.Unicode Release|Win32.Build.0 = Release|Win32
 		{B5919129-6716-499D-9516-04EC34C86CDF}.Unicode Release|x64.ActiveCfg = Release|x64
 		{B5919129-6716-499D-9516-04EC34C86CDF}.Unicode Release|x64.Build.0 = Release|x64
-		{E6EDE286-05E0-4396-B551-AB273111E967}.Debug|Win32.ActiveCfg = Debug|Win32
-		{E6EDE286-05E0-4396-B551-AB273111E967}.Debug|Win32.Build.0 = Debug|Win32
-		{E6EDE286-05E0-4396-B551-AB273111E967}.Debug|x64.ActiveCfg = Debug|Win32
-		{E6EDE286-05E0-4396-B551-AB273111E967}.Release|Win32.ActiveCfg = Release|Win32
-		{E6EDE286-05E0-4396-B551-AB273111E967}.Release|Win32.Build.0 = Release|Win32
-		{E6EDE286-05E0-4396-B551-AB273111E967}.Release|x64.ActiveCfg = Release|Win32
-		{E6EDE286-05E0-4396-B551-AB273111E967}.Unicode Debug|Win32.ActiveCfg = Debug|Win32
-		{E6EDE286-05E0-4396-B551-AB273111E967}.Unicode Debug|Win32.Build.0 = Debug|Win32
-		{E6EDE286-05E0-4396-B551-AB273111E967}.Unicode Debug|x64.ActiveCfg = Debug|Win32
-		{E6EDE286-05E0-4396-B551-AB273111E967}.Unicode Release|Win32.ActiveCfg = Release|Win32
-		{E6EDE286-05E0-4396-B551-AB273111E967}.Unicode Release|Win32.Build.0 = Release|Win32
-		{E6EDE286-05E0-4396-B551-AB273111E967}.Unicode Release|x64.ActiveCfg = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

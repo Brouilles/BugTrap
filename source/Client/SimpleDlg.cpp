@@ -16,7 +16,6 @@
 #include "resource.h"
 #include "SimpleDlg.h"
 #include "BugTrapUI.h"
-#include "AboutDlg.h"
 #include "Globals.h"
 
 #ifdef _DEBUG
@@ -125,7 +124,6 @@ static BOOL SimpleDlg_OnInitDialog(HWND hwnd, HWND hwndFocus, LPARAM lParam)
 
 	InitControls(hwnd);
 	InitIntro(hwnd, g_hlURL);
-	InitAbout(hwnd);
 
 	return FALSE;
 }
@@ -174,20 +172,6 @@ static void SimpleDlg_OnDestroy(HWND hwnd)
 }
 
 /**
- * @brief WM_SYSCOMMAND handler of simplified dialog.
- * @param hwnd - window handle.
- * @param cmd - specifies the type of system command requested.
- * @param x - horizontal position of the cursor, in screen coordinates.
- * @param y - vertical position of the cursor, in screen coordinates.
- */
-void SimpleDlg_OnSysCommand(HWND hwnd, UINT cmd, int x, int y)
-{
-	x; y;
-	if ((cmd & 0xFFF0) == IDM_ABOUTBOX)
-		DialogBox(g_hInstance, MAKEINTRESOURCE(IDD_ABOUT_BUGTRAP_DLG), hwnd, AboutDlgProc);
-}
-
-/**
  * @brief Dialog procedure of simplified dialog.
  * @param hwndDlg - window handle.
  * @param uMsg - message identifier.
@@ -201,7 +185,6 @@ INT_PTR CALLBACK SimpleDlgProc(HWND hwndDlg, UINT uMsg, WPARAM wParam, LPARAM lP
 	{
 	HANDLE_MSG(hwndDlg, WM_INITDIALOG, SimpleDlg_OnInitDialog);
 	HANDLE_MSG(hwndDlg, WM_COMMAND, SimpleDlg_OnCommand);
-	HANDLE_MSG(hwndDlg, WM_SYSCOMMAND, SimpleDlg_OnSysCommand);
 	HANDLE_MSG(hwndDlg, WM_CTLCOLORSTATIC, SimpleDlg_OnCtlColor);
 	HANDLE_MSG(hwndDlg, WM_DESTROY, SimpleDlg_OnDestroy);
 	default: return FALSE;

@@ -1075,26 +1075,6 @@ void InitIntro(HWND hwnd, CHyperLink& hlURL)
 }
 
 /**
- * @brief Initialize About menu item.
- * @param hwnd - parent window handle.
- */
-void InitAbout(HWND hwnd)
-{
-	// IDM_ABOUTBOX must be in the system command range.
-	_ASSERTE((IDM_ABOUTBOX & 0xFFF0) == IDM_ABOUTBOX);
-	_ASSERTE(IDM_ABOUTBOX < 0xF000);
-
-	HMENU hSysMenu = GetSystemMenu(hwnd, FALSE);
-	if (hSysMenu != NULL)
-	{
-		TCHAR szAboutMenu[64];
-		LoadString(g_hInstance, IDS_ABOUT_ITEM, szAboutMenu, countof(szAboutMenu));
-		AppendMenu(hSysMenu, MF_SEPARATOR, 0, NULL);
-		AppendMenu(hSysMenu, MF_STRING, IDM_ABOUTBOX, szAboutMenu);
-	}
-}
-
-/**
  * @brief Generate report file name based on user criteria.
  * @param pszFileName - user-supplied file name.
  * @param szFileNameBuffer - file name buffer that is used to store default report name.

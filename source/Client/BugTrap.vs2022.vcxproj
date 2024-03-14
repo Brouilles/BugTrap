@@ -801,7 +801,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="AboutDlg.cpp" />
     <ClCompile Include="DescribeErrorDlg.cpp" />
     <ClCompile Include="MachineInfoDlg.cpp" />
     <ClCompile Include="MachineStateDlg.cpp" />
@@ -857,7 +856,6 @@
     <ClCompile Include="StrStream.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AboutDlg.h" />
     <ClInclude Include="DescribeErrorDlg.h" />
     <ClInclude Include="MachineInfoDlg.h" />
     <ClInclude Include="MachineStateDlg.h" />

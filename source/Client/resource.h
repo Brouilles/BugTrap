@@ -3,7 +3,6 @@
 // Used by BugTrap.rc
 //
 #define IDD_MAIN_DLG                    101
-#define IDD_ABOUT_BUGTRAP_DLG           102
 #define IDD_MACHINE_INFO_DLG            103
 #define IDD_MACHINE_STATE_DLG           104
 #define IDI_BUG                         105
@@ -45,7 +44,6 @@
 #define IDS_COLUMN_BASE                 141
 #define IDS_COLUMN_TYPE                 142
 #define IDS_COLUMN_SIZE                 143
-#define IDS_ABOUT_ITEM                  144
 #define IDS_ERROR_NOT_AVAILABLE         145
 #define IDS_ZOOMOUT                     146
 #define IDS_RESETSIZE                   147
@@ -72,7 +70,6 @@
 #define IDC_MEM_TEXT                    1025
 #define IDC_ENVIRONMENT                 1026
 #define IDC_MORE                        1027
-#define IDC_PORTIONS_COPYRIGHT          1028
 #define IDC_DIALOG_ICON                 1029
 #define IDC_INTRO1                      1030
 #define IDC_INTRO2                      1031
@@ -92,15 +89,13 @@
 #define IDC_STATUSICON                  1045
 #define IDC_FILEFORMAT_FRAME            1046
 #define IDC_IMAGE_COMMANDS              1047
-#define IDC_VERSION_STRING              1049
 #define IDC_DETAILS                     1051
-#define IDC_STATIC_VERSION              1052
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        140
+#define _APS_NEXT_RESOURCE_VALUE        141
 #define _APS_NEXT_COMMAND_VALUE         40001
 #define _APS_NEXT_CONTROL_VALUE         1053
 #define _APS_NEXT_SYMED_VALUE           101

@@ -20,7 +20,6 @@
 #include "MachineStateDlg.h"
 #include "MachineInfoDlg.h"
 #include "PreviewDlg.h"
-#include "AboutDlg.h"
 #include "Globals.h"
 
 #ifdef _DEBUG
@@ -310,7 +309,6 @@ static BOOL MainDlg_OnInitDialog(HWND hwnd, HWND hwndFocus, LPARAM lParam)
 	InitReg(hwnd);
 	InitErrorInfo(hwnd);
 	InitStackTrace(hwnd);
-	InitAbout(hwnd);
 
 	return FALSE;
 }
@@ -361,20 +359,6 @@ static void MainDlg_OnDestroy(HWND hwnd)
 }
 
 /**
- * @brief WM_SYSCOMMAND handler of main dialog.
- * @param hwnd - window handle.
- * @param cmd - specifies the type of system command requested.
- * @param x - horizontal position of the cursor, in screen coordinates.
- * @param y - vertical position of the cursor, in screen coordinates.
- */
-void MainDlg_OnSysCommand(HWND hwnd, UINT cmd, int x, int y)
-{
-	x; y;
-	if ((cmd & 0xFFF0) == IDM_ABOUTBOX)
-		DialogBox(g_hInstance, MAKEINTRESOURCE(IDD_ABOUT_BUGTRAP_DLG), hwnd, AboutDlgProc);
-}
-
-/**
  * @brief Dialog procedure of main dialog.
  * @param hwndDlg - window handle.
  * @param uMsg - message identifier.
@@ -388,7 +372,6 @@ INT_PTR CALLBACK MainDlgProc(HWND hwndDlg, UINT uMsg, WPARAM wParam, LPARAM lPar
 	{
 	HANDLE_MSG(hwndDlg, WM_INITDIALOG, MainDlg_OnInitDialog);
 	HANDLE_MSG(hwndDlg, WM_COMMAND, MainDlg_OnCommand);
-	HANDLE_MSG(hwndDlg, WM_SYSCOMMAND, MainDlg_OnSysCommand);
 	HANDLE_MSG(hwndDlg, WM_CTLCOLORSTATIC, MainDlg_OnCtlColor);
 	HANDLE_MSG(hwndDlg, WM_DESTROY, MainDlg_OnDestroy);
 	default: return FALSE;

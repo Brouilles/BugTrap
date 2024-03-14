@@ -197,6 +197,5 @@ BOOL SubmitTempReport(HWND hwndParent);
 BOOL SendReport(void);
 BOOL SaveReport(PCTSTR pszFileName);
 void InitIntro(HWND hwnd, CHyperLink& hlURL);
-void InitAbout(HWND hwnd);
 void StartHandlerThread(void);
 LONG InternalFilter(PEXCEPTION_POINTERS pExceptionPointers);
