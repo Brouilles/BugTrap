@@ -20,7 +20,6 @@
 #include "WaitCursor.h"
 #include "MainDlg.h"
 #include "SimpleDlg.h"
-#include "SendMailDlg.h"
 #include "DescribeErrorDlg.h"
 #include "Globals.h"
 #include "Encoding.h"
@@ -81,121 +80,6 @@ static inline BOOL ShowMapiMessageEditor(void)
 static inline BOOL ShowBtMessageEditor(void)
 {
 	return (g_bShowUI && (g_dwFlags & BTF_EDITMAIL) != 0);
-}
-
-/**
- * @brief Send e-mail message through Simple MPI facilities.
- * @param hwndParent - parent window handle (valid if user interface is enabled).
- * @param pszSubject - subject text.
- * @param pszMessage - message text.
- * @return true for successfully completed operation.
- */
-BOOL SendEMail(HWND hwndParent, PCTSTR pszSubject, PCTSTR pszMessage)
-{
-	if (*g_szSupportEMail == _T('\0'))
-		return FALSE;
-	CWaitCursor wait;
-	if (g_bShowUI)
-		wait.BeginWait();
-	if (g_pMapiSession == NULL)
-	{
-		g_pMapiSession = new CMapiSession;
-		if (g_pMapiSession == NULL)
-			return FALSE;
-	}
-	if (! g_pMapiSession->LoggedOn())
-	{
-		if (*g_szMailProfile)
-		{
-			if (! g_pMapiSession->Logon(g_szMailProfile, g_szMailPassword))
-				return FALSE;
-		}
-		else if (g_bShowUI)
-		{
-			wait.EndWait();
-			if (! g_pMapiSession->Logon(hwndParent))
-				return FALSE;
-			wait.BeginWait();
-		}
-		else
-		{
-			if (! g_pMapiSession->Logon())
-				return FALSE;
-		}
-	}
-
-	CMapiMessage message;
-	message.GetTo().AddItem(g_szSupportEMail);
-	message.SetSubject(pszSubject);
-	message.SetBody(pszMessage);
-	if (g_dwFlags & BTF_ATTACHREPORT)
-	{
-		message.GetAttachments().AddItem(g_szInternalReportFilePath);
-		message.GetAttachmentTitles().AddItem(PathFindFileName(g_szInternalReportFilePath));
-	}
-	return g_pMapiSession->Send(message, ShowMapiMessageEditor(), hwndParent);
-}
-
-/**
- * @brief Send bug report through e-mail either using custom or system dialogs.
- * @param hwndParent - parent window handle.
- * @return true if operation was completed successfully.
- */
-BOOL MailTempReport(HWND hwndParent)
-{
-	if (*g_szSupportEMail == _T('\0'))
-		return FALSE;
-	TCHAR szSubject[MAX_PATH];
-	GetDefaultMailSubject(szSubject, countof(szSubject));
-	return SendEMail(hwndParent, szSubject, NULL);
-}
-
-/**
- * @brief Send bug report through e-mail either using custom or system dialogs.
- * @param hwndParent - parent window handle.
- * @return true if operation was completed successfully.
- */
-BOOL MailTempReportEx(HWND hwndParent)
-{
-	if (*g_szSupportEMail == _T('\0'))
-		return FALSE;
-	BOOL bResult;
-	if (ShowBtMessageEditor())
-	{
-		bResult = DialogBox(g_hInstance, MAKEINTRESOURCE(IDD_SEND_MAIL_DLG), hwndParent, SendMailDlgProc) == IDOK;
-	}
-	else if (g_dwFlags & BTF_ATTACHREPORT)
-	{
-		bResult = MailTempReport(hwndParent);
-	}
-	else
-	{
-		CWaitCursor wait;
-		if (g_bShowUI)
-			wait.BeginWait();
-		TCHAR szURLString[MAX_PATH];
-		GetDefaultMailURL(szURLString, countof(szURLString));
-		bResult = ShellExecute(NULL, _T("open"), szURLString, NULL, NULL, SW_SHOWDEFAULT) == ERROR_SUCCESS;
-	}
-	if (g_bShowUI)
-	{
-		TCHAR szProjectName[32], szMessageText[128];
-		LoadString(g_hInstance, IDS_BUGTRAP_NAME, szProjectName, countof(szProjectName));
-		if (bResult)
-		{
-			SetForegroundWindow(hwndParent);
-			LoadString(g_hInstance, IDS_STATUS_REPORTSENT, szMessageText, countof(szMessageText));
-			::MessageBox(hwndParent, szMessageText, szProjectName, MB_ICONINFORMATION | MB_OK);
-			EndDialog(hwndParent, FALSE);
-		}
-		else if ((g_dwFlags & BTF_EDITMAIL) == 0)
-		{
-			SetForegroundWindow(hwndParent);
-			LoadString(g_hInstance, IDS_ERROR_TRANSFERFAILED, szMessageText, countof(szMessageText));
-			::MessageBox(hwndParent, szMessageText, szProjectName, MB_ICONERROR | MB_OK);
-		}
-	}
-	return bResult;
 }
 
 /// Protocol message type.
@@ -1124,7 +1008,7 @@ BOOL SendTempReport(HWND hwndParent)
 }
 
 /**
- * @brief E-mail error report or send it over network protocol.
+ * @brief Send error report over network protocol.
  * @param hwndParent - parent window handle (valid if user interface is enabled).
  * @return true if operation was completed successfully.
  */
@@ -1132,8 +1016,6 @@ BOOL SubmitTempReport(HWND hwndParent)
 {
 	if (*g_szSupportHost && g_nSupportPort)
 		return SendTempReport(hwndParent);
-	else if (*g_szSupportEMail)
-		return MailTempReportEx(hwndParent);
 	else
 		return FALSE;
 }
@@ -1312,22 +1194,6 @@ BOOL SendReport(void)
 }
 
 /**
- * @brief Send bug report through e-mail either using custom or system dialogs.
- * @param hwndParent - parent window handle.
- * @return true if operation was completed successfully.
- */
-BOOL MailReport(void)
-{
-	if (*g_szSupportEMail == _T('\0'))
-		return FALSE;
-	if (! CreateTempReport())
-		return FALSE;
-	BOOL bResult = MailTempReport(NULL);
-	DeleteTempReport();
-	return bResult;
-}
-
-/**
  * @brief Perform BugTrap action (show dialog, submit report, etc.).
  */
 static void ExecuteHandlerAction(void)
@@ -1344,9 +1210,6 @@ static void ExecuteHandlerAction(void)
 		// Process remaining actions.
 		switch (g_eActivityType)
 		{
-		case BTA_MAILREPORT:
-			MailTempReport(NULL);
-			break;
 		case BTA_SENDREPORT:
 			SendTempReport(NULL);
 			break;

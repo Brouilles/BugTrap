@@ -192,12 +192,9 @@ DWORD CloseTransferThread(HANDLE hTransferThread);
 
 void GetDefaultMailSubject(PTSTR pszSubject, DWORD dwSubjectSize);
 void GetDefaultMailURL(PTSTR pszURLString, DWORD dwURLSize);
-BOOL SendEMail(HWND hwndParent, PCTSTR pszSubject, PCTSTR pszMessage);
-BOOL MailTempReportEx(HWND hwndParent);
 BOOL SendTempReport(HWND hwndParent);
 BOOL SubmitTempReport(HWND hwndParent);
 BOOL SendReport(void);
-BOOL MailReport(void);
 BOOL SaveReport(PCTSTR pszFileName);
 void InitIntro(HWND hwnd, CHyperLink& hlURL);
 void InitAbout(HWND hwnd);

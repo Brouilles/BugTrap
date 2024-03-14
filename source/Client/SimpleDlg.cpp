@@ -32,8 +32,6 @@
 static HWND g_hwndToolTip = NULL;
 /// URL hyper-link control pointing to support site.
 static CHyperLink g_hlURL;
-/// URL hyper-link control pointing to support e-mail.
-static CHyperLink g_hlMailTo;
 
 /**
  * @brief WM_COMMAND handler of simplified dialog.
@@ -48,9 +46,6 @@ static void SimpleDlg_OnCommand(HWND hwnd, int id, HWND hwndCtl, UINT codeNotify
 
 	switch (id)
 	{
-	case IDC_MAILTO:
-		MailTempReportEx(hwnd);
-		break;
 	case IDC_SUBMIT_BUG:
 		SubmitTempReport(hwnd);
 		break;
@@ -69,12 +64,10 @@ static void SimpleDlg_OnCommand(HWND hwnd, int id, HWND hwndCtl, UINT codeNotify
  */
 static void InitControls(HWND hwnd)
 {
-	HWND hwndMailTo = GetDlgItem(hwnd, IDC_MAILTO);
 	HWND hwndSubmitBug = GetDlgItem(hwnd, IDC_SUBMIT_BUG);
 	HWND hwndMore = GetDlgItem(hwnd, IDC_MORE);
 	HWND hwndClose = GetDlgItem(hwnd, IDCANCEL);
 
-	g_hlMailTo.Attach(hwndMailTo);
 	g_hwndToolTip = CreateWindowEx(WS_EX_TOOLWINDOW | WS_EX_TOPMOST, TOOLTIPS_CLASS, NULL, WS_POPUP | TTS_NOPREFIX,
 	                               CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT,
 	                               hwnd, NULL, g_hInstance, 0l);
@@ -89,10 +82,6 @@ static void InitControls(HWND hwnd)
 		tinfo.cbSize = sizeof(tinfo);
 		tinfo.uFlags = TTF_SUBCLASS | TTF_IDISHWND;
 		tinfo.hinst = g_hInstance;
-
-		tinfo.uId = (UINT_PTR)hwndMailTo;
-		tinfo.lpszText = (PTSTR)IDS_MAILTO_TIP;
-		SendMessage(g_hwndToolTip, TTM_ADDTOOL, 0, (LPARAM)&tinfo);
 
 		tinfo.uId = (UINT_PTR)hwndSubmitBug;
 		tinfo.lpszText = (PTSTR)IDS_SUBMIT_BUG_TIP;
@@ -109,14 +98,8 @@ static void InitControls(HWND hwnd)
 
 	if (*g_szSupportHost == _T('\0') || g_nSupportPort == 0)
 	{
-		ShowWindow(hwndMailTo, SW_HIDE);
 		if (*g_szSupportEMail == _T('\0'))
 			EnableWindow(hwndSubmitBug, FALSE);
-	}
-	else
-	{
-		if (*g_szSupportEMail == _T('\0'))
-			ShowWindow(hwndMailTo, SW_HIDE);
 	}
 
 	if (g_dwFlags & BTF_HIDEMOREBUTTON)
@@ -182,7 +165,6 @@ static void SimpleDlg_OnDestroy(HWND hwnd)
 	hwnd;
 
 	g_hlURL.Detach();
-	g_hlMailTo.Detach();
 
 	if (g_hwndToolTip)
 	{

@@ -94,8 +94,6 @@ EXPORTS
 	BT_SaveSnapshotEx
 	BT_SendSnapshot
 	BT_SendSnapshotEx
-	BT_MailSnapshot
-	BT_MailSnapshotEx
 	BT_SehFilter
 	BT_CallSehFilter
 	BT_CppFilter

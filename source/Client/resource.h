@@ -7,7 +7,6 @@
 #define IDD_MACHINE_INFO_DLG            103
 #define IDD_MACHINE_STATE_DLG           104
 #define IDI_BUG                         105
-#define IDD_SEND_MAIL_DLG               107
 #define IDD_SIMPLE_DLG                  111
 #define IDS_BUGTRAP_NAME                112
 #define IDS_CLOSE_TIP                   113
@@ -66,10 +65,6 @@
 #define IDC_SUBMIT_BUG                  1013
 #define IDC_PROCESS_LIST_FRAME          1014
 #define IDC_PROCESS_MODULES_LIST_FRAME  1015
-#define IDC_SUBJECT                     1016
-#define IDC_RECIPIENT                   1017
-#define IDC_ATTACHMENT                  1018
-#define IDC_BODY                        1019
 #define IDC_URL                         1020
 #define IDC_URL_PREFIX                  1021
 #define IDC_CPU_TEXT                    1023

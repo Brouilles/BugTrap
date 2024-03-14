@@ -270,9 +270,6 @@ static void FreeSymEngine(void)
 	g_pSymEngine = NULL;
 	delete g_pResManager;
 	g_pResManager = NULL;
-	// Certain actions may create global MAPI session object.
-	delete g_pMapiSession;
-	g_pMapiSession = NULL;
 }
 
 /**
@@ -2151,38 +2148,6 @@ extern "C" BUGTRAP_API BOOL APIENTRY BT_SaveSnapshotEx(PEXCEPTION_POINTERS pExce
 		return FALSE;
 	// Save snapshot.
 	BOOL bResult = g_pSymEngine != NULL && g_pEnumProc != NULL ? SaveReport(pszFileName) : FALSE;
-	// Deallocate system engine object.
-	FreeSymEngine();
-	g_pExceptionPointers = NULL;
-	return bResult;
-}
-
-/**
- * @return true if operation has been completed successfully.
- */
-extern "C" BUGTRAP_API BOOL APIENTRY BT_MailSnapshot(void)
-{
-	// Initialize snapshot.
-	BOOL bFreeSymEngine = InitSnapshot();
-	// Save snapshot.
-	BOOL bResult = g_pSymEngine != NULL && g_pEnumProc != NULL ? MailReport() : FALSE;
-	// Deallocate system engine object.
-	if (bFreeSymEngine)
-		FreeSymEngine();
-	return bResult;
-}
-
-/**
- * @param pExceptionPointers - pointer to the exception information.
- * @return true if operation has been completed successfully.
- */
-extern "C" BUGTRAP_API BOOL APIENTRY BT_MailSnapshotEx(PEXCEPTION_POINTERS pExceptionPointers)
-{
-	// Initialize snapshot.
-	if (! InitSnapshot(pExceptionPointers))
-		return FALSE;
-	// Save snapshot.
-	BOOL bResult = g_pSymEngine != NULL && g_pEnumProc != NULL ? MailReport() : FALSE;
 	// Deallocate system engine object.
 	FreeSymEngine();
 	g_pExceptionPointers = NULL;

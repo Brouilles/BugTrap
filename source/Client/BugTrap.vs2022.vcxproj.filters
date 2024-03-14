@@ -124,9 +124,6 @@
     <ClCompile Include="PreviewDlg.cpp">
       <Filter>Dialogs\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SendMailDlg.cpp">
-      <Filter>Dialogs\Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="SimpleDlg.cpp">
       <Filter>Dialogs\Source Files</Filter>
     </ClCompile>
@@ -159,9 +156,6 @@
     </ClCompile>
     <ClCompile Include="WaitCursor.cpp">
       <Filter>Controls\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CMapi.cpp">
-      <Filter>System\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="EnumProcess.cpp">
       <Filter>System\Source Files</Filter>
@@ -255,9 +249,6 @@
     <ClInclude Include="PreviewDlg.h">
       <Filter>Dialogs\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SendMailDlg.h">
-      <Filter>Dialogs\Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="SimpleDlg.h">
       <Filter>Dialogs\Header Files</Filter>
     </ClInclude>
@@ -308,9 +299,6 @@
     </ClInclude>
     <ClInclude Include="WaitCursor.h">
       <Filter>Controls\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CMapi.h">
-      <Filter>System\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="EnumProcess.h">
       <Filter>System\Header Files</Filter>

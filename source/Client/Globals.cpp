@@ -70,8 +70,6 @@ INT_PTR g_nPostErrHandlerParam = 0;
 PEXCEPTION_POINTERS g_pExceptionPointers = NULL;
 /// Custom resources manager.
 CResManager* g_pResManager = NULL;
-/// Pointer to Simple MAPI session object.
-CMapiSession* g_pMapiSession = NULL;
 /// Pointer to symbolic engine.
 CSymEngine* g_pSymEngine = NULL;
 /// Pointer to process enumerator.

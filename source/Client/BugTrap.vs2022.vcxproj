@@ -807,7 +807,6 @@
     <ClCompile Include="MachineStateDlg.cpp" />
     <ClCompile Include="MainDlg.cpp" />
     <ClCompile Include="PreviewDlg.cpp" />
-    <ClCompile Include="SendMailDlg.cpp" />
     <ClCompile Include="SimpleDlg.cpp" />
     <ClCompile Include="TransferProgressDlg.cpp" />
     <ClCompile Include="ColHelper.cpp" />
@@ -819,7 +818,6 @@
     <ClCompile Include="Splitter.cpp" />
     <ClCompile Include="TextView.cpp" />
     <ClCompile Include="WaitCursor.cpp" />
-    <ClCompile Include="CMapi.cpp" />
     <ClCompile Include="EnumProcess.cpp" />
     <ClCompile Include="InMemLogFile.cpp" />
     <ClCompile Include="LogFile.cpp" />
@@ -865,7 +863,6 @@
     <ClInclude Include="MachineStateDlg.h" />
     <ClInclude Include="MainDlg.h" />
     <ClInclude Include="PreviewDlg.h" />
-    <ClInclude Include="SendMailDlg.h" />
     <ClInclude Include="SimpleDlg.h" />
     <ClInclude Include="TransferProgressDlg.h" />
     <ClInclude Include="Array.h" />
@@ -883,7 +880,6 @@
     <ClInclude Include="Splitter.h" />
     <ClInclude Include="TextView.h" />
     <ClInclude Include="WaitCursor.h" />
-    <ClInclude Include="CMapi.h" />
     <ClInclude Include="EnumProcess.h" />
     <ClInclude Include="InMemLogFile.h" />
     <ClInclude Include="LogFile.h" />

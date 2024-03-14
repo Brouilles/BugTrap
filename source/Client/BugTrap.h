@@ -56,9 +56,9 @@ typedef enum BUGTRAP_ACTIVITY_tag
 	 */
 	BTA_SAVEREPORT   = 2,
 	/**
-	 * @brief Automatically send error report by e-mail.
+	 * @brief Unused
 	 */
-	BTA_MAILREPORT   = 3,
+	BTA_UNUSED       = 3,
 	/**
 	 * @brief Automatically send bug report to support server.
 	 */
@@ -796,14 +796,6 @@ BUGTRAP_API BOOL APIENTRY BT_SendSnapshot(void);
  * @brief Take a snapshot of program memory and send over network.
  */
 BUGTRAP_API BOOL APIENTRY BT_SendSnapshotEx(PEXCEPTION_POINTERS pExceptionPointers);
-/**
- * @brief Take a snapshot of program memory and e-mail it.
- */
-BUGTRAP_API BOOL APIENTRY BT_MailSnapshot(void);
-/**
- * @brief Take a snapshot of program memory and e-mail it.
- */
-BUGTRAP_API BOOL APIENTRY BT_MailSnapshotEx(PEXCEPTION_POINTERS pExceptionPointers);
 /**
  * @brief Executes structured exception filter.
  * @note Don't call this function directly in your code.

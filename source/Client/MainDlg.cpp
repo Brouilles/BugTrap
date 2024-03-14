@@ -207,9 +207,6 @@ static void MainDlg_OnCommand(HWND hwnd, int id, HWND hwndCtl, UINT codeNotify)
 	case IDC_PREVIEW_REPORT:
 		DialogBox(g_hInstance, MAKEINTRESOURCE(IDD_PREVIEW_DLG), hwnd, PreviewDlgProc);
 		break;
-	case IDC_MAILTO:
-		MailTempReportEx(hwnd);
-		break;
 	case IDC_SUBMIT_BUG:
 		SubmitTempReport(hwnd);
 		break;

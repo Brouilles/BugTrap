@@ -18,7 +18,6 @@
 #include "ResManager.h"
 #include "Array.h"
 #include "LogFile.h"
-#include "CMapi.h"
 #include "SymEngine.h"
 #include "EnumProcess.h"
 #include "LogLink.h"
@@ -93,8 +92,6 @@ extern INT_PTR g_nPostErrHandlerParam;
 extern PEXCEPTION_POINTERS g_pExceptionPointers;
 /// Custom resources manager.
 extern CResManager* g_pResManager;
-/// Pointer to Simple MAPI session object.
-extern CMapiSession* g_pMapiSession;
 /// Pointer to symbolic engine.
 extern CSymEngine* g_pSymEngine;
 /// Pointer to process enumerator.
