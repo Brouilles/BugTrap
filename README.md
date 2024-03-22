@@ -1,3 +1,5 @@
+[![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
+
 ![GitHub License](https://img.shields.io/github/license/Brouilles/BugTrap)
 
 # What changed?
